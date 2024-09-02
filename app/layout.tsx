@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import clsx from 'clsx';
-import SessionWrapper from './_components/SessionWrapper';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -17,19 +16,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <SessionWrapper>
-      <html lang="en">
-        <body
-          className={clsx(
-            'flex min-h-screen flex-col antialiased',
-            inter.className,
-          )}
-          // TODO remove this before prod
-          suppressHydrationWarning={true}
-        >
-          {children}
-        </body>
-      </html>
-    </SessionWrapper>
+    <html lang="en">
+      <body
+        className={clsx(
+          'flex min-h-screen flex-col antialiased',
+          inter.className,
+        )}
+        // TODO remove this before prod
+        suppressHydrationWarning={true}
+      >
+        {children}
+      </body>
+    </html>
   );
 }

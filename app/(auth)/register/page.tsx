@@ -1,9 +1,35 @@
+import { handleRegistration } from '@/server/actions/auth';
+import { redirect } from 'next/navigation';
+
 export default function Register() {
+  async function onRegister(formData: FormData) {
+    'use server';
+
+    await handleRegistration(formData);
+
+    redirect('/dashboard');
+  }
+
   return (
     <>
       <h2 className="text-center text-2xl">Register</h2>
 
-      <form className="grid gap-4">
+      <form action={onRegister} className="grid gap-4">
+        <div className="grid">
+          <label htmlFor="email">First Name</label>
+          <input
+            type="text"
+            id="firstName"
+            name="firstName"
+            className="border"
+          />
+        </div>
+
+        <div className="grid">
+          <label htmlFor="email">Last Name</label>
+          <input type="text" id="lastName" name="lastName" className="border" />
+        </div>
+
         <div className="grid">
           <label htmlFor="email">Email</label>
           <input type="email" id="email" name="email" className="border" />

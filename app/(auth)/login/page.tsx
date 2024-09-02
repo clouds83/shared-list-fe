@@ -1,45 +1,24 @@
-'use client';
-
-import { FormEvent } from 'react';
-import { useRouter } from 'next/navigation';
-import { useSession, signIn } from 'next-auth/react';
-import { useEffect } from 'react';
+import { api } from '@/lib/api';
+import { redirect } from 'next/navigation';
+import { cookies } from 'next/headers';
+import { handleLogin } from '@/server/actions/auth';
 
 export default function Login() {
-  const { data: session } = useSession();
-  const router = useRouter();
+  // const { data: session } = useSession();
 
-  const handleSubmit = async (event: FormEvent) => {
-    event.preventDefault();
+  async function onLogin(formData: FormData) {
+    'use server';
 
-    const formData = new FormData(event.target as HTMLFormElement);
+    await handleLogin(formData);
 
-    const email = formData.get('email') as string;
-    const password = formData.get('password') as string;
-
-    await signIn('credentials', {
-      email,
-      password,
-      redirect: false,
-    });
-  };
-
-  if (session) {
-    // router.push('/dashboard');
-    console.log(session);
+    redirect('/dashboard');
   }
-
-  useEffect(() => {
-    if (session) {
-      router.push('/dashboard');
-    }
-  }, []);
 
   return (
     <>
       <h2 className="text-center text-2xl">Login</h2>
 
-      <form onSubmit={handleSubmit} className="grid gap-4">
+      <form action={onLogin} className="grid gap-4">
         <div className="grid">
           <label htmlFor="email">Email</label>
           <input
@@ -47,7 +26,6 @@ export default function Login() {
             id="email"
             name="email"
             className="border"
-            value="second@email.com"
             required
           />
         </div>
@@ -59,7 +37,6 @@ export default function Login() {
             id="password"
             name="password"
             className="border"
-            value="123123"
             required
           />
         </div>
