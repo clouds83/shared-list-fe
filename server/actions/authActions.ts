@@ -1,6 +1,7 @@
 'use server';
 
 import { api } from '@/lib/api';
+import { redirect } from 'next/navigation';
 import { cookies } from 'next/headers';
 
 export async function handleRegistration(formData: FormData) {
@@ -47,8 +48,17 @@ export async function handleLogin(formData: FormData) {
       console.log('Invalid email or password');
     }
 
-    cookies().set('auth_session', response.data.token, {
-      maxAge: 24 * 60 * 60 * 1000 * 30,
+    const { token, ...rest } = response.data;
+
+    cookies().set('auth_session', token, {
+      maxAge: 60 * 60 * 24 * 30,
+      path: '/',
+      httpOnly: false,
+      secure: process.env.NODE_ENV === 'production',
+    });
+
+    cookies().set('user', JSON.stringify(rest), {
+      maxAge: 60 * 60 * 24 * 30,
       path: '/',
       httpOnly: false,
       secure: process.env.NODE_ENV === 'production',
@@ -56,4 +66,9 @@ export async function handleLogin(formData: FormData) {
   } catch (error) {
     console.error('Something went wrong. Please try again.');
   }
+}
+
+export async function handleLogout() {
+  cookies().delete('auth_session');
+  redirect('/login');
 }

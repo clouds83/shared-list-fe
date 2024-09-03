@@ -1,5 +1,10 @@
+import { Subscription } from './Subscription';
+
 export type User = {
-  id?: string | null;
-  name?: string | null;
-  email?: string | null;
+  id: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  password: string;
+  subscriptionId?: string;
 };

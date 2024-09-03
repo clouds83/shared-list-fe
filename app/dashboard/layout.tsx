@@ -1,4 +1,5 @@
 import React from 'react';
+import Header from './_components/Header';
 
 export default function DashboardLayout({
   children,
@@ -6,8 +7,9 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <main className="flex flex-grow items-center justify-center p-6">
-      {children}
-    </main>
+    <>
+      <Header />
+      <main className="flex flex-grow p-6">{children}</main>
+    </>
   );
 }

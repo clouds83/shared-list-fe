@@ -1,7 +1,7 @@
 import { api } from '@/lib/api';
 import { redirect } from 'next/navigation';
 import { cookies } from 'next/headers';
-import { handleLogin } from '@/server/actions/auth';
+import { handleLogin } from '@/server/actions/authActions';
 
 export default function Login() {
   // const { data: session } = useSession();

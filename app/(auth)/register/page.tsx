@@ -1,4 +1,4 @@
-import { handleRegistration } from '@/server/actions/auth';
+import { handleRegistration } from '@/server/actions/authActions';
 import { redirect } from 'next/navigation';
 
 export default function Register() {
