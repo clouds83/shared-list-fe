@@ -2,11 +2,11 @@
 
 import { FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
-import { useSession, signIn } from 'next-auth/react';
-import { useEffect } from 'react';
+import authenticateAction from '@/server/actions/auth/authenticate-action';
+import { Button, Input } from '@/app/_components';
+import Link from 'next/link';
 
 export default function Login() {
-  const { data: session } = useSession();
   const router = useRouter();
 
   const handleSubmit = async (event: FormEvent) => {
@@ -17,63 +17,52 @@ export default function Login() {
     const email = formData.get('email') as string;
     const password = formData.get('password') as string;
 
-    await signIn('credentials', {
-      email,
-      password,
-      redirect: false,
-    });
-  };
+    const user = await authenticateAction(email, password);
 
-  if (session) {
-    // router.push('/dashboard');
-    console.log(session);
-  }
-
-  useEffect(() => {
-    if (session) {
+    if (user) {
       router.push('/dashboard');
     }
-  }, []);
+  };
 
   return (
     <>
-      <h2 className="text-center text-2xl">Login</h2>
+      <h1 className="text-center text-2xl font-bold">Login</h1>
 
-      <form onSubmit={handleSubmit} className="grid gap-4">
-        <div className="grid">
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <div className="space-y-2">
           <label htmlFor="email">Email</label>
-          <input
+          <Input
             type="email"
             id="email"
             name="email"
             className="border"
-            value="second@email.com"
+            placeholder="Enter your email"
             required
           />
         </div>
 
-        <div className="grid">
+        <div className="space-y-2">
           <label htmlFor="password">Password</label>
-          <input
+          <Input
             type="password"
             id="password"
             name="password"
             className="border"
-            value="123123"
+            placeholder="Enter your password"
             required
           />
         </div>
 
-        <button type="submit" className="bg-green-600">
+        <Button as="button" type="submit" variant="primary" className="w-full">
           Login
-        </button>
+        </Button>
       </form>
 
       <p className="text-center text-sm">
         Already have an account?{' '}
-        <a href="/register" className="text-blue-600">
+        <Link href="/register" className="text-blue-600">
           Register.
-        </a>
+        </Link>
       </p>
     </>
   );
