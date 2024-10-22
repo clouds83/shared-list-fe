@@ -1,10 +1,10 @@
-import { InputHTMLAttributes, forwardRef } from 'react';
-import { cn } from '@/lib/utils/cn';
+import { InputHTMLAttributes, forwardRef } from 'react'
+import { cn } from '@/utils/cn'
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  type?: 'text' | 'password' | 'email' | 'number' | 'url';
-  error?: boolean;
-  valid?: boolean;
+  type?: 'text' | 'password' | 'email' | 'number' | 'url'
+  error?: boolean
+  valid?: boolean
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
@@ -25,10 +25,10 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         ref={ref}
         {...props}
       />
-    );
+    )
   },
-);
+)
 
-Input.displayName = 'Input';
+Input.displayName = 'Input'
 
-export default Input;
+export default Input

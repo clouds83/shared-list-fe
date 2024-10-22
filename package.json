@@ -10,26 +10,18 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.1.5",
-<<<<<<< HEAD
-=======
     "@hookform/resolvers": "^3.9.0",
     "axios": "^1.7.7",
->>>>>>> e24849220fe58eee32b98bb74243de39973774b5
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "cookies-next": "^4.2.1",
     "next": "14.2.5",
     "react": "^18",
     "react-dom": "^18",
-<<<<<<< HEAD
     "tailwind-merge": "^2.5.4",
-    "tailwindcss-animate": "^1.0.7"
-=======
-    "react-hook-form": "^7.53.0",
-    "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7",
+    "react-hook-form": "^7.53.0",
     "yup": "^1.4.0"
->>>>>>> e24849220fe58eee32b98bb74243de39973774b5
   },
   "devDependencies": {
     "@types/node": "^20",

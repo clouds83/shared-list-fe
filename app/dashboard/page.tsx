@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import getAllItemsAction from '@/server/actions/items/get-all-items-action'
 import { Button } from '../_components'
 import { TrashIcon, PencilIcon } from '@heroicons/react/20/solid'
@@ -54,12 +53,4 @@ export default async function Dashboard() {
       <AddItemModal />
     </div>
   )
-=======
-export default function Dashboard() {
-  return (
-    <div>
-      <h1>dashboard</h1>
-    </div>
-  );
->>>>>>> e24849220fe58eee32b98bb74243de39973774b5
 }

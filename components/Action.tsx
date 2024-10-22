@@ -1,10 +1,10 @@
-'use client';
+'use client'
 
-import { forwardRef, ReactNode } from 'react';
-import clsx from 'clsx';
-import { cn } from '@/lib/utils/cn';
-import Link from 'next/link';
-import { Url } from 'next/dist/shared/lib/router/router';
+import { forwardRef, ReactNode } from 'react'
+import clsx from 'clsx'
+import { cn } from '@/utils/cn'
+import Link from 'next/link'
+import { Url } from 'next/dist/shared/lib/router/router'
 
 type BaseProps = {
   variant?:
@@ -13,30 +13,30 @@ type BaseProps = {
     | 'outline'
     | 'ghost'
     | 'link'
-    | 'destructive';
-  size?: 'xs' | 'sm' | 'md' | 'lg';
-  Icon?: ReactNode;
-  iconRight?: boolean;
-  iconClass?: string;
-  className?: string;
-  children?: ReactNode;
-};
+    | 'destructive'
+  size?: 'xs' | 'sm' | 'md' | 'lg'
+  Icon?: ReactNode
+  iconRight?: boolean
+  iconClass?: string
+  className?: string
+  children?: ReactNode
+}
 
 type ActionProps = BaseProps &
   (
     | (React.ButtonHTMLAttributes<HTMLButtonElement> & {
-        as: 'button';
+        as: 'button'
       })
     | (React.AnchorHTMLAttributes<HTMLAnchorElement> & {
-        as: 'a';
+        as: 'a'
       })
-  );
+  )
 
 const baseClasses = clsx(
   'text-md inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium transition-colors',
   'focus-visible:ring-ring focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black',
   'disabled:pointer-events-none disabled:opacity-50',
-);
+)
 
 const variantsClasses = {
   variant: {
@@ -54,7 +54,7 @@ const variantsClasses = {
     md: 'h-12 px-6',
     lg: 'h-14 px-8 text-lg',
   },
-};
+}
 
 const Action = forwardRef(
   (
@@ -70,7 +70,7 @@ const Action = forwardRef(
     }: ActionProps,
     ref,
   ) => {
-    const iconOnly = !children;
+    const iconOnly = !children
     const classes = cn(
       baseClasses,
       variantsClasses.variant[variant],
@@ -80,7 +80,7 @@ const Action = forwardRef(
         'aspect-square p-0': iconOnly,
       },
       className,
-    );
+    )
 
     const Content = () => {
       return (
@@ -98,11 +98,11 @@ const Action = forwardRef(
           )}
           {children}
         </>
-      );
-    };
+      )
+    }
 
     if (props.as === 'a') {
-      const { as, href, ...rest } = props;
+      const { as, href, ...rest } = props
 
       return (
         <Link
@@ -113,11 +113,11 @@ const Action = forwardRef(
         >
           <Content />
         </Link>
-      );
+      )
     }
 
     if (props.as === 'button') {
-      const { as, ...rest } = props;
+      const { as, ...rest } = props
 
       return (
         <button
@@ -127,13 +127,13 @@ const Action = forwardRef(
         >
           <Content />
         </button>
-      );
+      )
     }
 
-    return null;
+    return null
   },
-);
+)
 
-Action.displayName = 'Action';
+Action.displayName = 'Action'
 
-export default Action;
+export default Action

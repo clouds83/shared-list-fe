@@ -3,13 +3,13 @@ import React, {
   ReactNode,
   HTMLAttributes,
   ElementType,
-} from 'react';
-import { cn } from '@/lib/utils/cn';
+} from 'react'
+import { cn } from '@/utils/cn'
 
 interface ContainerProps extends HTMLAttributes<HTMLElement> {
-  as?: ElementType;
-  className?: string;
-  children: ReactNode;
+  as?: ElementType
+  className?: string
+  children: ReactNode
 }
 
 const Container = forwardRef<HTMLElement, ContainerProps>(
@@ -22,8 +22,8 @@ const Container = forwardRef<HTMLElement, ContainerProps>(
       >
         {children}
       </Component>
-    );
+    )
   },
-);
+)
 
-export default Container;
+export default Container
