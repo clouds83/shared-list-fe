@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 'use client';
 
 import { FormEvent } from 'react';
@@ -8,12 +9,22 @@ import Link from 'next/link';
 
 export default function Login() {
   const router = useRouter();
+=======
+import { api } from '@/lib/api';
+import { redirect } from 'next/navigation';
+import { cookies } from 'next/headers';
+import { handleLogin } from '@/server/actions/authActions';
 
-  const handleSubmit = async (event: FormEvent) => {
-    event.preventDefault();
+export default function Login() {
+  // const { data: session } = useSession();
+>>>>>>> e24849220fe58eee32b98bb74243de39973774b5
 
-    const formData = new FormData(event.target as HTMLFormElement);
+  async function onLogin(formData: FormData) {
+    'use server';
 
+    await handleLogin(formData);
+
+<<<<<<< HEAD
     const email = formData.get('email') as string;
     const password = formData.get('password') as string;
 
@@ -23,20 +34,32 @@ export default function Login() {
       router.push('/dashboard');
     }
   };
+=======
+    redirect('/dashboard');
+  }
+>>>>>>> e24849220fe58eee32b98bb74243de39973774b5
 
   return (
     <>
       <h1 className="text-center text-2xl font-bold">Login</h1>
 
+<<<<<<< HEAD
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="space-y-2">
+=======
+      <form action={onLogin} className="grid gap-4">
+        <div className="grid">
+>>>>>>> e24849220fe58eee32b98bb74243de39973774b5
           <label htmlFor="email">Email</label>
           <Input
             type="email"
             id="email"
             name="email"
             className="border"
+<<<<<<< HEAD
             placeholder="Enter your email"
+=======
+>>>>>>> e24849220fe58eee32b98bb74243de39973774b5
             required
           />
         </div>
@@ -48,7 +71,10 @@ export default function Login() {
             id="password"
             name="password"
             className="border"
+<<<<<<< HEAD
             placeholder="Enter your password"
+=======
+>>>>>>> e24849220fe58eee32b98bb74243de39973774b5
             required
           />
         </div>
