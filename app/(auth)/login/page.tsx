@@ -24,15 +24,15 @@ export default function Login() {
       const user = await authenticateAction(email, password)
 
       if (user) {
-        router.push('/dashboard')
+        router.replace('/dashboard')
       } else {
+        setLoading(false)
         setError('Invalid email or password.')
       }
     } catch (err) {
       console.error('Authentication error:', err)
-      setError('An unexpected error occurred. Please try again later.')
-    } finally {
       setLoading(false)
+      setError('An unexpected error occurred. Please try again later.')
     }
   }
 
@@ -52,7 +52,6 @@ export default function Login() {
             type="email"
             id="email"
             name="email"
-            className="w-full rounded-md border p-2"
             placeholder="Enter your email"
             required
             disabled={loading}
@@ -70,7 +69,6 @@ export default function Login() {
             type="password"
             id="password"
             name="password"
-            className="w-full rounded-md border p-2"
             placeholder="Enter your password"
             required
             disabled={loading}
